@@ -8,6 +8,19 @@ package dominio;
  *
  * @author HP
  */
+
+@Entity
+@Table(name = "Tramites")
 public class Tramites {
+    
+    //Atributos
+    @id
+    @column (name = "id", lengt = 1000)
+    private String id;
+    
+    @column (name = "fechaExpedicion", nullable = false,length = 255)
+    @Temporal (TemporalType.DATE)
+    private Calendar fechaExpedicion;
+    
     
 }
