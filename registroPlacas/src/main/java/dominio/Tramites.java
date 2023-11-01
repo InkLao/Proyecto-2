@@ -4,6 +4,8 @@
  */
 package dominio;
 
+import java.util.Calendar;
+import javax.persistence.*;
 /**
  *
  * @author HP
@@ -14,11 +16,12 @@ package dominio;
 public class Tramites {
     
     //Atributos
-    @id
-    @column (name = "id", lengt = 1000)
-    private String id;
+    @Id
+    @Column (name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
-    @column (name = "fechaExpedicion", nullable = false,length = 255)
+    @Column (name = "fechaExpedicion", nullable = false,length = 255)
     @Temporal (TemporalType.DATE)
     private Calendar fechaExpedicion;
     

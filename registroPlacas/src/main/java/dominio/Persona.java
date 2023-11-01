@@ -55,6 +55,16 @@ public class Persona implements Serializable {
         this.discapacidad = discapacidad;
         this.telefono = telefono;
     }
+
+    public Persona(String nombres, String apellido_paterno, String apellido_materno, Calendar fechaNacimiento, Boolean discapacidad, String telefono) {
+        this.nombres = nombres;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
+        this.fechaNacimiento = fechaNacimiento;
+        this.discapacidad = discapacidad;
+        this.telefono = telefono;
+    }
+    
     
 
     public String getRfc() {
