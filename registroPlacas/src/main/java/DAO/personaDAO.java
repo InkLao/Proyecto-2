@@ -4,12 +4,23 @@
  */
 package DAO;
 
+import java.util.List;
+
 /**
  *
  * @author 
  */
-public class personaDAO {
-    
+public interface personaDAO {
+    // Obtiene la persona por ID
+    Persona getPersona(int id);
+    // Lista de todas las personas
+    List<Persona> getAllPersonas();
+    // Se agrega una persona
+    void agregarPersona(Persona persona);
+    // Se actualiza una persona
+    void actualizarPersona(Persona persona);
+    // Se elimina una persona
+    void eliminarPersona(int id);
     
     
 }
