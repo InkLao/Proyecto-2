@@ -11,6 +11,8 @@ import javax.persistence.*;
  *
  * @author HP
  */
+@Entity
+@Table(name = "Pagos")
 public class Pagos {
 
     //Atributos

@@ -16,7 +16,7 @@ import java.util.Objects;
 
     
 @Entity
-@Table(name = "persona")
+@Table(name = "Personas")
 public class Persona implements Serializable {
 
     //Variables
