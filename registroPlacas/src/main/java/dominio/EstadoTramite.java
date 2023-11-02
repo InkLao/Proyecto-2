@@ -5,10 +5,20 @@
 package dominio;
 
 /**
+ * Enumeración que representa el estado de un trámite, que puede ser ACTIVO o INACTIVO.
+ * Esta enumeración se utiliza para definir el estado de un trámite en diferentes contextos.
  *
  * @author Jairo G. Rodriguez Hernandez 00000213248
  */
 public enum EstadoTramite {
+    /**
+     * Representa el estado de un trámite como ACTIVO.
+     */
     ACTIVO,
-    INNACTIVO
+
+    /**
+     * Representa el estado de un trámite como INACTIVO.
+     */
+    INACTIVO
 }
+
