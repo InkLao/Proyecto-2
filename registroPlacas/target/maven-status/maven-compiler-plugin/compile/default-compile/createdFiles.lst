@@ -5,6 +5,7 @@ dominio\Licencias_.class
 interfaces\ITramitesDAO.class
 conexionBD\IConexionBD.class
 excepciones\PersistenciaException.class
+implementacionDAO\PersonasDAO.class
 pruebas\pruebas.class
 dominio\CondicionVehiculo.class
 dominio\Placas.class
@@ -18,6 +19,7 @@ implementacionDAO\CostosDAO.class
 dominio\Automoviles.class
 dominio\TarifaLicencias.class
 factory\FactoryDAO.class
+implementacionDAO\VehiculosDAO.class
 dominio\Costos.class
 dominio\Persona.class
 factory\IFactoryDAO.class
@@ -31,5 +33,7 @@ dominio\TarifaLicencias_.class
 dominio\TarifaPlacas_.class
 dominio\Placas_.class
 dominio\TarifaPlacas.class
+implementacionDAO\PagosDAO.class
 conexionBD\ConexionBD.class
 dominio\Tramites.class
+implementacionDAO\TramitesDAO.class

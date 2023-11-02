@@ -8,7 +8,7 @@ package excepciones;
  *
  * @author HP
  */
-public class PersistenciaException extends Exception {
+public class PersistenciaException extends RuntimeException {
 
     public PersistenciaException() {
     }
@@ -28,7 +28,5 @@ public class PersistenciaException extends Exception {
     public PersistenciaException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
-    
-    
-    
+
 }

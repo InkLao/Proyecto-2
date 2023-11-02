@@ -21,7 +21,7 @@ import javax.persistence.criteria.Root;
  * @author HP
  */
 public class VehiculosDAO implements IVehiculosDAO {
-    
+
     private IConexionBD conexionBD;
 
     public VehiculosDAO(IConexionBD conexionBD) {
@@ -30,19 +30,18 @@ public class VehiculosDAO implements IVehiculosDAO {
 
     @Override
     public Vehiculos obtenerVehiculo(String serie) throws PersistenciaException {
-       EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
         EntityManager bd = bdf.createEntityManager();
-        try{
+        try {
             bd.getTransaction().begin();
             Vehiculos vehiculoEncontrado = bd.find(Vehiculos.class, serie);
             bd.getTransaction().commit();
             return vehiculoEncontrado;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
             throw new PersistenciaException("No se pudo encontrar el vehículo: " + ex.getMessage(), ex);
-        }
-        finally{
+        } finally {
             if (bd != null && bd.isOpen()) {
                 bd.close();
             }
@@ -53,7 +52,7 @@ public class VehiculosDAO implements IVehiculosDAO {
     public List<Vehiculos> obtenerAllVehiculos() throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
         EntityManager bd = bdf.createEntityManager();
-        try{
+        try {
             bd.getTransaction().begin();
             CriteriaBuilder builder = bd.getCriteriaBuilder();
             CriteriaQuery<Vehiculos> criteria = builder.createQuery(Vehiculos.class);
@@ -63,12 +62,11 @@ public class VehiculosDAO implements IVehiculosDAO {
             bd.getTransaction().commit();
             return tramites;
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
             throw new PersistenciaException("No se pudo encontrar los vehículos: " + ex.getMessage(), ex);
-        }
-        finally{
+        } finally {
             if (bd != null && bd.isOpen()) {
                 bd.close();
             }
@@ -79,18 +77,17 @@ public class VehiculosDAO implements IVehiculosDAO {
     public Vehiculos agregarVehiculo(Vehiculos vehiculos) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
         EntityManager bd = bdf.createEntityManager();
-        try{
+        try {
             bd.getTransaction().begin();
             bd.persist(vehiculos);
             bd.getTransaction().commit();
             return vehiculos;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
             throw new PersistenciaException("No se pudo agregar el vehículo: " + ex.getMessage(), ex);
-        }
-        finally{
-           if (bd != null && bd.isOpen()) {
+        } finally {
+            if (bd != null && bd.isOpen()) {
                 bd.close();
             }
         }
@@ -100,7 +97,7 @@ public class VehiculosDAO implements IVehiculosDAO {
     public Vehiculos actualizarVehiculo(Vehiculos vehiculos) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
         EntityManager bd = bdf.createEntityManager();
-        try{
+        try {
             bd.getTransaction().begin();
             Vehiculos vehiculoActualizado = bd.find(Vehiculos.class, vehiculos.getSerie());
             vehiculoActualizado.setModelo(vehiculos.getModelo());
@@ -111,12 +108,11 @@ public class VehiculosDAO implements IVehiculosDAO {
             bd.merge(vehiculoActualizado);
             bd.getTransaction().commit();
             return vehiculoActualizado;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
             throw new PersistenciaException("No se pudo actualizar el vehículo: " + ex.getMessage(), ex);
-        }
-        finally{
+        } finally {
             if (bd != null && bd.isOpen()) {
                 bd.close();
             }
@@ -127,7 +123,5 @@ public class VehiculosDAO implements IVehiculosDAO {
     public void eliminarVehiculo(String serie) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
-    
+
 }
