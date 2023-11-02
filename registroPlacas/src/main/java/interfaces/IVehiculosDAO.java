@@ -5,6 +5,7 @@
 package interfaces;
 
 import dominio.Vehiculos;
+import excepciones.PersistenciaException;
 import java.util.List;
 
 /**
@@ -14,14 +15,14 @@ import java.util.List;
 public interface IVehiculosDAO {
     
      // Obtiene los vehiculos por Serie
-    Vehiculos obtenerVehiculo(String serie);
+    Vehiculos obtenerVehiculo(String serie) throws PersistenciaException;
     // Lista de todos los vehiculos
-    List<Vehiculos> obtenerAllVehiculos();
+    List<Vehiculos> obtenerAllVehiculos() throws PersistenciaException;
     // Se agrega un vehiculo
-    Vehiculos agregarVehiculo(Vehiculos vehiculos);
+    Vehiculos agregarVehiculo(Vehiculos vehiculos) throws PersistenciaException;
     // Se actualiza un vehiculo
-    void actualizarVehiculo(Vehiculos vehiculos);
+    Vehiculos actualizarVehiculo(Vehiculos vehiculos) throws PersistenciaException;
     // Se elimina un vehiculo
-    void eliminarVehiculo(String serie);
+    void eliminarVehiculo(String serie) throws PersistenciaException;
     
 }

@@ -5,6 +5,7 @@
 package interfaces;
 
 import dominio.Pagos;
+import excepciones.PersistenciaException;
 import java.util.List;
 
 /**
@@ -14,14 +15,14 @@ import java.util.List;
 public interface IPagosDAO {
     
      // Obtiene un pago por ID
-    Pagos obtenerPago(Long id);
+    Pagos obtenerPago(Long id) throws PersistenciaException;
     // Lista de todas los pagos
-    List<Pagos> obtenerAllPagos();
+    List<Pagos> obtenerAllPagos() throws PersistenciaException;
     // Se agrega un pago
-    Pagos agregarPago(Pagos pagos);
+    Pagos agregarPago(Pagos pagos) throws PersistenciaException;
     // Se actualiza un pago
-    void actualizarPago(Pagos pagos);
+    Pagos actualizarPago(Pagos pagos) throws PersistenciaException;
     // Se elimina un pago
-    void eliminarPago(Long id);
+    void eliminarPago(Long id) throws PersistenciaException;
     
 }

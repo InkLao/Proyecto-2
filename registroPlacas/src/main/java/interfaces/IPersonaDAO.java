@@ -5,6 +5,7 @@
 package interfaces;
 
 import dominio.Persona;
+import excepciones.PersistenciaException;
 import java.util.List;
 
 /**
@@ -13,15 +14,15 @@ import java.util.List;
  */
 public interface IPersonaDAO {
     // Obtiene la persona por rfc
-    Persona obtenerPersona(String rfc);
+    Persona obtenerPersona(String rfc) throws PersistenciaException;
     // Lista de todas las personas
-    List<Persona> obtenerAllPersonas();
+    List<Persona> obtenerAllPersonas() throws PersistenciaException;
     // Se agrega una persona
-    Persona agregarPersona(Persona persona);
+    Persona agregarPersona(Persona persona) throws PersistenciaException;
     // Se actualiza una persona
-    void actualizarPersona(Persona persona);
+    Persona actualizarPersona(Persona persona) throws PersistenciaException;
     // Se elimina una persona
-    void eliminarPersona(String rfc);
+    void eliminarPersona(String rfc) throws PersistenciaException;
     
     
 }
