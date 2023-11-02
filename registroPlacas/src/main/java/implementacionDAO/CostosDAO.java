@@ -17,17 +17,30 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
+ * Clase que implementa la interfaz ICostosDAO para acceder a los datos relacionados con costos en una base de datos. Esta clase se encarga de realizar operaciones de acceso a datos, como obtener, agregar, actualizar y eliminar costos en la base de datos.
  *
  * @author HP
  */
 public class CostosDAO implements ICostosDAO {
 
     private IConexionBD conexionBD;
-
+    
+    /**
+     * Constructor de la clase CostosDAO.
+     *
+     * @param conexionBD Objeto que proporciona la conexión a la base de datos.
+     */
     public CostosDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
-
+    
+    /**
+     * Obtiene un costo por su identificador único.
+     *
+     * @param id Identificador del costo a obtener.
+     * @return El costo encontrado o null si no se encontró.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public Costos obtenerCosto(Long id) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -47,7 +60,13 @@ public class CostosDAO implements ICostosDAO {
             }
         }
     }
-
+    
+    /**
+     * Obtiene una lista de todos los costos en la base de datos.
+     *
+     * @return Una lista de costos disponibles en la base de datos.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public List<Costos> obtenerAllCostos() throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -72,7 +91,14 @@ public class CostosDAO implements ICostosDAO {
             }
         }
     }
-
+    
+    /**
+     * Agrega un nuevo costo a la base de datos.
+     *
+     * @param costos El costo a agregar a la base de datos.
+     * @return El costo agregado, con su identificador único asignado.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public Costos agregarCosto(Costos costos) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -92,7 +118,14 @@ public class CostosDAO implements ICostosDAO {
             }
         }
     }
-
+    
+    /**
+     * Actualiza un costo en la base de datos.
+     *
+     * @param costos El costo con los nuevos datos a actualizar.
+     * @return El costo actualizado en la base de datos.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public Costos actualizarCosto(Costos costos) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -115,7 +148,12 @@ public class CostosDAO implements ICostosDAO {
             }
         }
     }
-
+    
+    /**
+     * Elimina un costo en base a su id
+     * @param id Identificador del costo a eliminar
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public void eliminarCosto(Long id) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

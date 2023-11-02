@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
+ * Clase que implementa la interfaz ITramitesDAO para acceder a los datos relacionados con trámites en una base de datos. Esta clase se encarga de realizar operaciones de acceso a datos, como obtener, agregar, actualizar y eliminar trámites en la base de datos.
  *
  * @author HP
  */
@@ -24,10 +25,22 @@ public class TramitesDAO implements ITramitesDAO {
     
     private IConexionBD conexionBD;
 
+    /**
+     * Constructor de la clase TramitesDAO.
+     *
+     * @param conexionBD Objeto que proporciona la conexión a la base de datos.
+     */
     public TramitesDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
 
+    /**
+     * Obtiene un trámite por su ID.
+     *
+     * @param id ID del trámite a obtener.
+     * @return El trámite encontrado o null si no se encontró.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public Tramites obtenerTramite(Long id) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -49,6 +62,12 @@ public class TramitesDAO implements ITramitesDAO {
         }
     }
 
+    /**
+     * Obtiene una lista de todos los trámites en la base de datos.
+     *
+     * @return Una lista de trámites disponibles en la base de datos.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public List<Tramites> obtenerAllTramites() throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -62,7 +81,6 @@ public class TramitesDAO implements ITramitesDAO {
             List<Tramites> tramites = query.getResultList();
             bd.getTransaction().commit();
             return tramites;
-
         }catch(Exception ex){
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
@@ -75,6 +93,13 @@ public class TramitesDAO implements ITramitesDAO {
         }
     }
 
+    /**
+     * Agrega un nuevo trámite a la base de datos.
+     *
+     * @param tramites El trámite a agregar a la base de datos.
+     * @return El trámite agregado, con su ID asignado.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public Tramites agregarTramite(Tramites tramites) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -96,6 +121,13 @@ public class TramitesDAO implements ITramitesDAO {
         }
     }
 
+    /**
+     * Actualiza un trámite en la base de datos.
+     *
+     * @param tramites El trámite con los nuevos datos a actualizar.
+     * @return El trámite actualizado en la base de datos.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public Tramites actualizarTramite(Tramites tramites) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -122,11 +154,14 @@ public class TramitesDAO implements ITramitesDAO {
         }
     }
 
+    /**
+     * Elimina un trámite de la base de datos por su ID.
+     *
+     * @param id ID del trámite a eliminar.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public void eliminarTramite(Long id) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
-    
 }

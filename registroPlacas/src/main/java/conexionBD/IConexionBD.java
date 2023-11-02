@@ -8,11 +8,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 /**
+ * Interfaz que define el método para obtener una instancia de EntityManagerFactory
+ * con el propósito de establecer una conexión a una base de datos MySQL.
  *
  * @author HP
  */
 public interface IConexionBD {
     
+    /**
+     * Obtiene una instancia de EntityManagerFactory para la conexión a una base de datos MySQL.
+     *
+     * @return La factoría de entidades para la conexión a la base de datos.
+     */
     EntityManagerFactory useConnectionMySQL();
-    
 }
+

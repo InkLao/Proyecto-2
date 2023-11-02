@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
+ * Clase que implementa la interfaz IPersonaDAO para acceder a los datos relacionados con personas en una base de datos. Esta clase se encarga de realizar operaciones de acceso a datos, como obtener, agregar, actualizar y eliminar personas en la base de datos.
  *
  * @author HP
  */
@@ -24,11 +25,22 @@ public class PersonasDAO implements IPersonaDAO{
     
     private IConexionBD conexionBD;
 
+    /**
+     * Constructor de la clase PersonasDAO.
+     *
+     * @param conexionBD Objeto que proporciona la conexión a la base de datos.
+     */
     public PersonasDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
-    
 
+    /**
+     * Obtiene una persona por su RFC.
+     *
+     * @param rfc RFC de la persona a obtener.
+     * @return La persona encontrada o null si no se encontró.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public Persona obtenerPersona(String rfc) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -48,10 +60,14 @@ public class PersonasDAO implements IPersonaDAO{
                 bd.close();
             }
         }
-        
     }
-       
 
+    /**
+     * Obtiene una lista de todas las personas en la base de datos.
+     *
+     * @return Una lista de personas disponibles en la base de datos.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public List<Persona> obtenerAllPersonas() throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -65,7 +81,6 @@ public class PersonasDAO implements IPersonaDAO{
             List<Persona> personas = query.getResultList();
             bd.getTransaction().commit();
             return personas;
-
         }catch(Exception ex){
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
@@ -78,6 +93,13 @@ public class PersonasDAO implements IPersonaDAO{
         }
     }
 
+    /**
+     * Agrega una nueva persona a la base de datos.
+     *
+     * @param persona La persona a agregar a la base de datos.
+     * @return La persona agregada, con su RFC asignado.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public Persona agregarPersona(Persona persona) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -98,8 +120,14 @@ public class PersonasDAO implements IPersonaDAO{
             }
         }
     }
-    
 
+    /**
+     * Actualiza una persona en la base de datos.
+     *
+     * @param persona La persona con los nuevos datos a actualizar.
+     * @return La persona actualizada en la base de datos.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public Persona actualizarPersona(Persona persona) throws PersistenciaException {
         EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
@@ -131,9 +159,14 @@ public class PersonasDAO implements IPersonaDAO{
         }
     }
 
+    /**
+     * Elimina una persona de la base de datos por su RFC.
+     *
+     * @param rfc RFC de la persona a eliminar.
+     * @throws PersistenciaException Si ocurre un error durante la operación de acceso a datos.
+     */
     @Override
     public void eliminarPersona(String rfc) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }

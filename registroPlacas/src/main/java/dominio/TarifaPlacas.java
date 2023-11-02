@@ -12,10 +12,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 /**
- * Clase que representa una tarifa de placas para vehículos, que extiende la
- * clase Costos. Esta clase almacena información sobre la condición del vehículo
- * y los costos asociados.
- *
+ * Clase que representa una tarifa de placas para vehículos, que extiende la clase Costos. Esta clase almacena información sobre la condición del vehículo y los costos asociados.
+ * 
  * @author HP
  */
 @Entity
@@ -29,19 +27,43 @@ public class TarifaPlacas extends Costos {
     @Enumerated(EnumType.STRING)
     private CondicionVehiculo condicionVehiculo;
 
+    /**
+     * Constructor por defecto de la clase TarifaPlacas.
+     */
     public TarifaPlacas() {
     }
 
+    /**
+     * Constructor que permite inicializar todas las propiedades de la tarifa de placas, incluyendo la condición del vehículo, el identificador, el precio normal y la lista de trámites asociados.
+     *
+     * @param condicionVehiculo La condición del vehículo a la que se aplica esta tarifa.
+     * @param id El identificador de la tarifa de placas.
+     * @param precioNormal El precio normal de la tarifa.
+     * @param tramites La lista de trámites asociados a la tarifa de placas.
+     */
     public TarifaPlacas(CondicionVehiculo condicionVehiculo, Long id, Float precioNormal, List<Tramites> tramites) {
         super(id, precioNormal, tramites);
         this.condicionVehiculo = condicionVehiculo;
     }
 
+    /**
+     * Constructor que permite inicializar algunas propiedades de la tarifa de placas, incluyendo la condición del vehículo, el precio normal y la lista de trámites asociados.
+     *
+     * @param condicionVehiculo La condición del vehículo a la que se aplica esta tarifa.
+     * @param precioNormal El precio normal de la tarifa.
+     * @param tramites La lista de trámites asociados a la tarifa de placas.
+     */
     public TarifaPlacas(CondicionVehiculo condicionVehiculo, Float precioNormal, List<Tramites> tramites) {
         super(precioNormal, tramites);
         this.condicionVehiculo = condicionVehiculo;
     }
 
+    /**
+     * Constructor que permite inicializar algunas propiedades de la tarifa de placas, incluyendo la condición del vehículo y el precio normal.
+     *
+     * @param condicionVehiculo La condición del vehículo a la que se aplica esta tarifa.
+     * @param precioNormal El precio normal de la tarifa.
+     */
     public TarifaPlacas(CondicionVehiculo condicionVehiculo, Float precioNormal) {
         super(precioNormal);
         this.condicionVehiculo = condicionVehiculo;

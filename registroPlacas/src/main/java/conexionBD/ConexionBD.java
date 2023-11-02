@@ -9,6 +9,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
+ * Clase que implementa la interfaz IConexionBD para proporcionar una conexión a la base de datos MySQL.
+ * Esta clase gestiona la creación y cierre de la factoría de entidades (EntityManagerFactory) para acceder a la base de datos.
  *
  * @author HP
  */
@@ -16,6 +18,12 @@ public class ConexionBD implements IConexionBD {
 
     private static EntityManagerFactory factory;
 
+    /**
+     * Obtiene una instancia de la factoría de entidades (EntityManagerFactory) para la conexión a la base de datos MySQL.
+     * Si la factoría no existe o está cerrada, la crea.
+     *
+     * @return La factoría de entidades para la conexión a la base de datos.
+     */
     @Override
     public EntityManagerFactory useConnectionMySQL() {
         if (factory == null || !factory.isOpen()) {
@@ -24,10 +32,13 @@ public class ConexionBD implements IConexionBD {
         return factory;
     }
 
+    /**
+     * Cierra la factoría de entidades (EntityManagerFactory) si está abierta.
+     */
     public static void closeEntityManagerFactory() {
         if (factory != null && factory.isOpen()) {
             factory.close();
         }
     }
-
 }
+
