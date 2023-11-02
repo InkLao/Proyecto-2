@@ -28,41 +28,27 @@ public class TarifaLicencias extends Costos {
     @Enumerated(EnumType.STRING)
     private VigenciaTarifaLicencia vigencia;
 
-    /**
-     * Constructor vacío de la clase TarifaLicencias.
-     */
     public TarifaLicencias() {
     }
 
-    /**
-     * Constructor de la clase TarifaLicencias con todos los parámetros.
-     *
-     * @param precioDiscapacitado El precio de la tarifa para discapacitados.
-     * @param vigencia           La vigencia de la tarifa de licencia.
-     * @param id                 El ID de la tarifa de licencias.
-     * @param precioNormal       El precio normal de la tarifa.
-     * @param tramites           La lista de trámites asociados a la tarifa.
-     */
     public TarifaLicencias(Float precioDiscapacitado, VigenciaTarifaLicencia vigencia, Long id, Float precioNormal, List<Tramites> tramites) {
         super(id, precioNormal, tramites);
         this.precioDiscapacitado = precioDiscapacitado;
         this.vigencia = vigencia;
     }
 
-    /**
-     * Constructor de la clase TarifaLicencias sin el ID.
-     *
-     * @param precioDiscapacitado El precio de la tarifa para discapacitados.
-     * @param vigencia           La vigencia de la tarifa de licencia.
-     * @param precioNormal       El precio normal de la tarifa.
-     * @param tramites           La lista de trámites asociados a la tarifa.
-     */
     public TarifaLicencias(Float precioDiscapacitado, VigenciaTarifaLicencia vigencia, Float precioNormal, List<Tramites> tramites) {
         super(precioNormal, tramites);
         this.precioDiscapacitado = precioDiscapacitado;
         this.vigencia = vigencia;
     }
 
+    public TarifaLicencias(Float precioDiscapacitado, VigenciaTarifaLicencia vigencia, Float precioNormal) {
+        super(precioNormal);
+        this.precioDiscapacitado = precioDiscapacitado;
+        this.vigencia = vigencia;
+    }
+    
     /**
      * Obtiene el precio de la tarifa para discapacitados.
      *

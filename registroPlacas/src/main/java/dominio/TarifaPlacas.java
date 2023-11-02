@@ -24,40 +24,29 @@ public class TarifaPlacas extends Costos {
     /**
      * Condición del vehículo a la que se aplica esta tarifa.
      */
-    @Column(name = "Vigencias", nullable = false)
+    @Column(name = "condicion", nullable = false)
     @Enumerated(EnumType.STRING)
     private CondicionVehiculo condicionVehiculo;
 
-    /**
-     * Constructor vacío de la clase TarifaPlacas.
-     */
     public TarifaPlacas() {
     }
 
-    /**
-     * Constructor de la clase TarifaPlacas con todos los parámetros.
-     *
-     * @param condicionVehiculo La condición del vehículo.
-     * @param id              El ID de la tarifa.
-     * @param precioNormal    El precio normal de la tarifa.
-     * @param tramites        La lista de trámites asociados a la tarifa.
-     */
     public TarifaPlacas(CondicionVehiculo condicionVehiculo, Long id, Float precioNormal, List<Tramites> tramites) {
         super(id, precioNormal, tramites);
         this.condicionVehiculo = condicionVehiculo;
     }
 
-    /**
-     * Constructor de la clase TarifaPlacas sin el ID.
-     *
-     * @param condicionVehiculo La condición del vehículo.
-     * @param precioNormal    El precio normal de la tarifa.
-     * @param tramites        La lista de trámites asociados a la tarifa.
-     */
     public TarifaPlacas(CondicionVehiculo condicionVehiculo, Float precioNormal, List<Tramites> tramites) {
         super(precioNormal, tramites);
         this.condicionVehiculo = condicionVehiculo;
     }
+
+    public TarifaPlacas(CondicionVehiculo condicionVehiculo, Float precioNormal) {
+        super(precioNormal);
+        this.condicionVehiculo = condicionVehiculo;
+    }
+
+   
 
     /**
      * Obtiene la condición del vehículo asociada a esta tarifa.

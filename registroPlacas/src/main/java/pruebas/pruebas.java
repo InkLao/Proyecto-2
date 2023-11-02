@@ -4,7 +4,14 @@
  */
 package pruebas;
 
+import dominio.Automoviles;
+import dominio.CondicionVehiculo;
 import dominio.Persona;
+import dominio.TarifaLicencias;
+import dominio.TarifaPlacas;
+import dominio.VigenciaTarifaLicencia;
+import excepciones.PersistenciaException;
+import factory.FactoryDAO;
 import java.util.Calendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,7 +26,7 @@ public class pruebas {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PersistenciaException {
         // TODO code application logic here
         
 //        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia");
@@ -32,6 +39,26 @@ public class pruebas {
 //        em.close();
 //        emf.close();
         
+    FactoryDAO factoryDAO = new FactoryDAO();
+    
+    //Persona persona = new Persona("1234567891011", "Daniel", "Alamea", "Lopez", Calendar.getInstance(), Boolean.FALSE, "123456789", "ROHJ010918HSLDRRA4");
+
+    //persona.setTramites(null);
+    //factoryDAO.crearPersonasDAO().agregarPersona(persona);
+    
+//    Automoviles automovil = new Automoviles("abcdefghijklmnopq", "Supra", "rojo", "1998", "Toyota");
+//    
+//    factoryDAO.crearVehiculosDAO().agregarVehiculo(automovil);
+//    
+    
+    TarifaPlacas tarifaPlacas = new TarifaPlacas(CondicionVehiculo.NUEVO, 400F);
+    
+    //TarifaLicencias tarifaLicencias = new TarifaLicencias(300F, VigenciaTarifaLicencia.I_AÑO, 400F);
+
+    factoryDAO.crearCostosDAO().agregarCosto(tarifaPlacas);
+    
+    //factoryDAO.crearCostosDAO().agregarCosto(tarifaLicencias);
+    
     }
     
 }

@@ -36,10 +36,10 @@ public class Costos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "precioNormal", nullable = false)
+    @Column(name = "precioNormal")
     private Float precioNormal;
 
-    @OneToMany(mappedBy = "Costos")
+    @OneToMany(mappedBy = "costos")
     private List<Tramites> tramites;
 
     /**
@@ -72,6 +72,10 @@ public class Costos implements Serializable {
         this.tramites = tramites;
     }
 
+    public Costos(Float precioNormal) {
+        this.precioNormal = precioNormal;
+    }
+    
     /**
      * Obtiene el ID del costo.
      *

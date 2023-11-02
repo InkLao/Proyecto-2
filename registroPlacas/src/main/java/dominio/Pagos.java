@@ -27,9 +27,12 @@ public class Pagos {
     private Float monto;
 
     // Relaciones
-    @OneToOne(mappedBy = "Pagos", cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_tramite")
     private Tramites tramites;
 
+    
+    
     /**
      * Constructor vacío de la clase Pagos.
      */

@@ -80,6 +80,15 @@ public class Vehiculos {
         this.marca = marca;
         this.placas = placas;
     }
+
+    public Vehiculos(String serie, String modelo, String color, String linea, String marca) {
+        this.serie = serie;
+        this.modelo = modelo;
+        this.color = color;
+        this.linea = linea;
+        this.marca = marca;
+    }
+    
     
     /**
      * Obtiene la serie del vehículo

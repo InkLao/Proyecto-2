@@ -4,6 +4,14 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>dominio.Persona</class>
     <class>dominio.Costos</class>
+    <class>dominio.Automoviles</class>
+    <class>dominio.Licencias</class>
+    <class>dominio.Pagos</class>
+    <class>dominio.Placas</class>
+    <class>dominio.TarifaLicencias</class>
+    <class>dominio.TarifaPlacas</class>
+    <class>dominio.Tramites</class>
+    <class>dominio.Vehiculos</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/registroplaca?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -49,7 +49,7 @@ public class Persona implements Serializable {
     private String curp;
 
     // Relaciones
-    @OneToMany(mappedBy = "Personas")
+    @OneToMany(mappedBy = "persona")
     private List<Tramites> tramites;
 
     /**
