@@ -12,16 +12,16 @@ import java.util.List;
  * @author 
  */
 public interface IPersonaDAO {
-    // Obtiene la persona por ID
-    Persona getPersona(int id);
+    // Obtiene la persona por rfc
+    Persona obtenerPersona(String rfc);
     // Lista de todas las personas
-    List<Persona> getAllPersonas();
+    List<Persona> obtenerAllPersonas();
     // Se agrega una persona
-    void agregarPersona(Persona persona);
+    Persona agregarPersona(Persona persona);
     // Se actualiza una persona
     void actualizarPersona(Persona persona);
     // Se elimina una persona
-    void eliminarPersona(int id);
+    void eliminarPersona(String rfc);
     
     
 }
