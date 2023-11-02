@@ -7,6 +7,9 @@ package fachada;
 
 import dominio.Costos;
 import dominio.Persona;
+import dominio.Vehiculos;
+import excepciones.PersistenciaException;
+import java.util.List;
 
 /**
  *
@@ -14,7 +17,18 @@ import dominio.Persona;
  */
 public interface IFachada {
 
+    // personas
     public Persona agregarPersona(Persona persona);
+    // Obtiene la persona por rfc
+
+    Persona obtenerPersona(String rfc);
+
+    List<Persona> obtenerAllPersonas();
+
+    Persona actualizarPersona(Persona persona);
 
     public Costos agregarCosto(Costos costo);
+
+    public Vehiculos agregarVehiculo(Vehiculos vehiculos);
+
 }

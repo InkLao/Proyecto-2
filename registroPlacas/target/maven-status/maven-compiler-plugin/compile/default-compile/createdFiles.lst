@@ -1,4 +1,6 @@
 dominio\Tramites_.class
+fachada\Fachada.class
+factory\IFactoryNegocio.class
 dominio\Persona_.class
 dominio\Vehiculos_.class
 dominio\Licencias_.class
@@ -18,14 +20,20 @@ dominio\Automoviles_.class
 implementacionDAO\CostosDAO.class
 dominio\Automoviles.class
 dominio\TarifaLicencias.class
+factory\FactoryNegocio.class
 factory\FactoryDAO.class
 implementacionDAO\VehiculosDAO.class
 dominio\Costos.class
+negocio\AutomovilNegocio.class
+fachada\IFachada.class
+negocio\PersonaNegocio.class
 dominio\Persona.class
 factory\IFactoryDAO.class
 interfaces\IPersonaDAO.class
 dominio\EstadoTramite.class
 dominio\VigenciaTarifaLicencia.class
+excepciones\NegocioException.class
+negocio\CostosNegocio.class
 dominio\Pagos.class
 interfaces\ICostosDAO.class
 interfaces\IPagosDAO.class

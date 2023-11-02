@@ -5,6 +5,7 @@
  */
 package factory;
 
+import negocio.AutomovilNegocio;
 import negocio.CostosNegocio;
 import negocio.PersonaNegocio;
 
@@ -17,4 +18,6 @@ public interface IFactoryNegocio {
     public PersonaNegocio crearPersonaNegocio();
 
     public CostosNegocio crearCostoNegocio();
+
+    public AutomovilNegocio crearAutomovilNegocio();
 }

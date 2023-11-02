@@ -27,18 +27,22 @@ public class PersonaNegocio {
         return factoryDAO.crearPersonasDAO().agregarPersona(persona);
     }
 
-//    // Obtiene la persona por rfc
-//    Persona obtenerPersona(String rfc) throws PersistenciaException
-//
-//    // Lista de todas las personas
-//    List<Persona> obtenerAllPersonas() throws PersistenciaException;
-//
-//
-//
-//
-//    // Se actualiza una persona
-//    Persona actualizarPersona(Persona persona) throws PersistenciaException;
-//
-//    // Se elimina una persona
-//    void eliminarPersona(String rfc) throws PersistenciaException;
+    // Obtiene la persona por rfc
+    public Persona obtenerPersona(String rfc) {
+        return factoryDAO.crearPersonasDAO().obtenerPersona(rfc);
+    }
+
+    public List<Persona> obtenerAllPersonas() {
+        return factoryDAO.crearPersonasDAO().obtenerAllPersonas();
+    }
+
+    // Se actualiza una persona
+    public Persona actualizarPersona(Persona persona) {
+        return factoryDAO.crearPersonasDAO().actualizarPersona(persona);
+    }
+
+    // Se elimina una persona
+    public void eliminarPersona(String rfc) {
+        factoryDAO.crearPersonasDAO().eliminarPersona(rfc);
+    }
 }

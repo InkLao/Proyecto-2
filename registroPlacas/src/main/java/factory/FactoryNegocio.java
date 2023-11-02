@@ -5,6 +5,7 @@
  */
 package factory;
 
+import negocio.AutomovilNegocio;
 import negocio.CostosNegocio;
 import negocio.PersonaNegocio;
 
@@ -22,6 +23,11 @@ public class FactoryNegocio implements IFactoryNegocio {
     @Override
     public CostosNegocio crearCostoNegocio() {
         return new CostosNegocio();
+    }
+
+    @Override
+    public AutomovilNegocio crearAutomovilNegocio() {
+        return new AutomovilNegocio();
     }
 
 }
