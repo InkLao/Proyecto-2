@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import dominio.Persona;
 import java.util.List;
 
 /**
