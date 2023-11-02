@@ -12,8 +12,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 /**
- * Clase que representa una tarifa de licencias en el sistema.
- * Esta clase almacena información sobre la tarifa de licencias, incluyendo el precio para discapacitados y la vigencia de la tarifa.
+ * Clase que representa una tarifa de licencias en el sistema. Esta clase
+ * almacena información sobre la tarifa de licencias, incluyendo el precio para
+ * discapacitados y la vigencia de la tarifa.
  *
  * @author HP
  */
@@ -21,10 +22,10 @@ import javax.persistence.Enumerated;
 @DiscriminatorValue(value = "TarifaLicencias")
 public class TarifaLicencias extends Costos {
 
-    @Column(name = "precioDiscapacitado", nullable = false)
+    @Column(name = "precioDiscapacitado", nullable = true)
     private Float precioDiscapacitado;
 
-    @Column(name = "Vigencias", nullable = false)
+    @Column(name = "vigencias", nullable = true)
     @Enumerated(EnumType.STRING)
     private VigenciaTarifaLicencia vigencia;
 
@@ -48,7 +49,7 @@ public class TarifaLicencias extends Costos {
         this.precioDiscapacitado = precioDiscapacitado;
         this.vigencia = vigencia;
     }
-    
+
     /**
      * Obtiene el precio de la tarifa para discapacitados.
      *
@@ -61,7 +62,8 @@ public class TarifaLicencias extends Costos {
     /**
      * Establece el precio de la tarifa para discapacitados.
      *
-     * @param precioDiscapacitado El nuevo precio de la tarifa para discapacitados.
+     * @param precioDiscapacitado El nuevo precio de la tarifa para
+     * discapacitados.
      */
     public void setPrecioDiscapacitado(Float precioDiscapacitado) {
         this.precioDiscapacitado = precioDiscapacitado;

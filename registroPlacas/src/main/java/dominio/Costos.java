@@ -19,8 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Clase que representa los costos de trámites, una clase base para otras clases relacionadas con costos.
- * Esta clase almacena información sobre el costo de trámites, incluyendo su ID, precio normal y lista de trámites asociados.
+ * Clase que representa los costos de trámites, una clase base para otras clases
+ * relacionadas con costos. Esta clase almacena información sobre el costo de
+ * trámites, incluyendo su ID, precio normal y lista de trámites asociados.
  *
  * @author Jairo G. Rodriguez Hernandez 00000213248
  */
@@ -36,7 +37,7 @@ public class Costos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "precioNormal")
+    @Column(name = "precioNormal", nullable = true)
     private Float precioNormal;
 
     @OneToMany(mappedBy = "costos")
@@ -51,9 +52,9 @@ public class Costos implements Serializable {
     /**
      * Constructor de la clase Costos con todos los parámetros.
      *
-     * @param id         El ID del costo.
+     * @param id El ID del costo.
      * @param precioNormal El precio normal del costo.
-     * @param tramites   La lista de trámites asociados al costo.
+     * @param tramites La lista de trámites asociados al costo.
      */
     public Costos(Long id, Float precioNormal, List<Tramites> tramites) {
         this.id = id;
@@ -65,7 +66,7 @@ public class Costos implements Serializable {
      * Constructor de la clase Costos sin el ID.
      *
      * @param precioNormal El precio normal del costo.
-     * @param tramites   La lista de trámites asociados al costo.
+     * @param tramites La lista de trámites asociados al costo.
      */
     public Costos(Float precioNormal, List<Tramites> tramites) {
         this.precioNormal = precioNormal;
@@ -75,7 +76,7 @@ public class Costos implements Serializable {
     public Costos(Float precioNormal) {
         this.precioNormal = precioNormal;
     }
-    
+
     /**
      * Obtiene el ID del costo.
      *
@@ -153,7 +154,8 @@ public class Costos implements Serializable {
     }
 
     /**
-     * Compara el costo de trámites con otro objeto para verificar su igualdad basada en el ID.
+     * Compara el costo de trámites con otro objeto para verificar su igualdad
+     * basada en el ID.
      *
      * @param obj El objeto con el que se va a comparar.
      * @return true si los costos son iguales, false en caso contrario.

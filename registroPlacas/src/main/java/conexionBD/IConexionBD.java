@@ -5,6 +5,7 @@
 package conexionBD;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -12,6 +13,6 @@ import javax.persistence.EntityManager;
  */
 public interface IConexionBD {
     
-    EntityManager useConnectionMySQL();
+    EntityManagerFactory useConnectionMySQL();
     
 }

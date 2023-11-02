@@ -13,15 +13,21 @@ import javax.persistence.Persistence;
  * @author HP
  */
 public class ConexionBD implements IConexionBD {
-    
+
     private static EntityManagerFactory factory;
 
     @Override
-    public EntityManager useConnectionMySQL() {
-        if (factory == null) {
+    public EntityManagerFactory useConnectionMySQL() {
+        if (factory == null || !factory.isOpen()) {
             factory = Persistence.createEntityManagerFactory("persistencia");
         }
-        return factory.createEntityManager();
+        return factory;
     }
-    
+
+    public static void closeEntityManagerFactory() {
+        if (factory != null && factory.isOpen()) {
+            factory.close();
+        }
+    }
+
 }

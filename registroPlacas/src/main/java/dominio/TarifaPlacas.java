@@ -12,8 +12,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 /**
- * Clase que representa una tarifa de placas para vehículos, que extiende la clase Costos.
- * Esta clase almacena información sobre la condición del vehículo y los costos asociados.
+ * Clase que representa una tarifa de placas para vehículos, que extiende la
+ * clase Costos. Esta clase almacena información sobre la condición del vehículo
+ * y los costos asociados.
  *
  * @author HP
  */
@@ -24,7 +25,7 @@ public class TarifaPlacas extends Costos {
     /**
      * Condición del vehículo a la que se aplica esta tarifa.
      */
-    @Column(name = "condicion", nullable = false)
+    @Column(name = "condicion", nullable = true)
     @Enumerated(EnumType.STRING)
     private CondicionVehiculo condicionVehiculo;
 
@@ -45,8 +46,6 @@ public class TarifaPlacas extends Costos {
         super(precioNormal);
         this.condicionVehiculo = condicionVehiculo;
     }
-
-   
 
     /**
      * Obtiene la condición del vehículo asociada a esta tarifa.

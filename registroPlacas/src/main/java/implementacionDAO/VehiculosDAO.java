@@ -10,6 +10,7 @@ import excepciones.PersistenciaException;
 import interfaces.IVehiculosDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -29,7 +30,8 @@ public class VehiculosDAO implements IVehiculosDAO {
 
     @Override
     public Vehiculos obtenerVehiculo(String serie) throws PersistenciaException {
-       EntityManager bd = conexionBD.useConnectionMySQL();
+       EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             Vehiculos vehiculoEncontrado = bd.find(Vehiculos.class, serie);
@@ -41,13 +43,16 @@ public class VehiculosDAO implements IVehiculosDAO {
             throw new PersistenciaException("No se pudo encontrar el vehículo: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public List<Vehiculos> obtenerAllVehiculos() throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             CriteriaBuilder builder = bd.getCriteriaBuilder();
@@ -64,13 +69,16 @@ public class VehiculosDAO implements IVehiculosDAO {
             throw new PersistenciaException("No se pudo encontrar los vehículos: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public Vehiculos agregarVehiculo(Vehiculos vehiculos) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             bd.persist(vehiculos);
@@ -82,13 +90,16 @@ public class VehiculosDAO implements IVehiculosDAO {
             throw new PersistenciaException("No se pudo agregar el vehículo: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+           if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public Vehiculos actualizarVehiculo(Vehiculos vehiculos) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             Vehiculos vehiculoActualizado = bd.find(Vehiculos.class, vehiculos.getSerie());
@@ -106,7 +117,9 @@ public class VehiculosDAO implements IVehiculosDAO {
             throw new PersistenciaException("No se pudo actualizar el vehículo: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 

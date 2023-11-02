@@ -10,6 +10,7 @@ import excepciones.PersistenciaException;
 import interfaces.IPersonaDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -30,7 +31,8 @@ public class PersonasDAO implements IPersonaDAO{
 
     @Override
     public Persona obtenerPersona(String rfc) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             Persona personaEncontrada = bd.find(Persona.class, rfc);
@@ -42,7 +44,9 @@ public class PersonasDAO implements IPersonaDAO{
             throw new PersistenciaException("No se pudo encontrar a la persona: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
         
     }
@@ -50,7 +54,8 @@ public class PersonasDAO implements IPersonaDAO{
 
     @Override
     public List<Persona> obtenerAllPersonas() throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             CriteriaBuilder builder = bd.getCriteriaBuilder();
@@ -67,13 +72,16 @@ public class PersonasDAO implements IPersonaDAO{
             throw new PersistenciaException("No se pudo encontrar a las personas: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public Persona agregarPersona(Persona persona) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             bd.persist(persona);
@@ -85,14 +93,17 @@ public class PersonasDAO implements IPersonaDAO{
             throw new PersistenciaException("No se pudo agregar a la persona: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
     
 
     @Override
     public Persona actualizarPersona(Persona persona) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             Persona personaActualizada = bd.find(Persona.class, persona.getRfc());
@@ -114,7 +125,9 @@ public class PersonasDAO implements IPersonaDAO{
             throw new PersistenciaException("No se pudo actualizar a la persona: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 

@@ -21,46 +21,42 @@ import interfaces.IVehiculosDAO;
  *
  * @author Jairo G. Rodriguez Hernandez 00000213248
  */
-public class FactoryDAO implements IFactoryDAO{
+public class FactoryDAO implements IFactoryDAO {
 
     private IConexionBD conexionBD;
 
-    
     public FactoryDAO() {
         this.conexionBD = new ConexionBD();
     }
-    
-    
-    
+
     @Override
     public ICostosDAO crearCostosDAO() {
-    
+
         return new CostosDAO(conexionBD);
     }
 
     @Override
     public IPagosDAO crearPagosDAO() {
-    
+
         return new PagosDAO(conexionBD);
     }
 
     @Override
     public IPersonaDAO crearPersonasDAO() {
-    
+
         return new PersonasDAO(conexionBD);
     }
 
     @Override
     public ITramitesDAO crearTramitesDAO() {
-    
+
         return new TramitesDAO(conexionBD);
     }
 
     @Override
     public IVehiculosDAO crearVehiculosDAO() {
-    
+
         return new VehiculosDAO(conexionBD);
     }
-    
-    
+
 }

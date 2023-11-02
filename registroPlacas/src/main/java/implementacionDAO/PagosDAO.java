@@ -10,6 +10,7 @@ import excepciones.PersistenciaException;
 import interfaces.IPagosDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -29,7 +30,8 @@ public class PagosDAO implements IPagosDAO {
 
     @Override
     public Pagos obtenerPago(Long id) throws PersistenciaException {
-       EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             Pagos pagoEncontrado = bd.find(Pagos.class, id);
@@ -41,13 +43,16 @@ public class PagosDAO implements IPagosDAO {
             throw new PersistenciaException("No se pudo encontrar el pago: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public List<Pagos> obtenerAllPagos() throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             CriteriaBuilder builder = bd.getCriteriaBuilder();
@@ -64,13 +69,16 @@ public class PagosDAO implements IPagosDAO {
             throw new PersistenciaException("No se pudo encontrar los pagos: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public Pagos agregarPago(Pagos pagos) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             bd.persist(pagos);
@@ -82,13 +90,16 @@ public class PagosDAO implements IPagosDAO {
             throw new PersistenciaException("No se pudo agregar el pago: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public Pagos actualizarPago(Pagos pagos) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             Pagos pagoActualizado = bd.find(Pagos.class, pagos.getId());
@@ -103,7 +114,9 @@ public class PagosDAO implements IPagosDAO {
             throw new PersistenciaException("No se pudo actualizar el pago: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 

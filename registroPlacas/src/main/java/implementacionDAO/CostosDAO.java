@@ -10,6 +10,7 @@ import excepciones.PersistenciaException;
 import interfaces.ICostosDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -19,37 +20,39 @@ import javax.persistence.criteria.Root;
  *
  * @author HP
  */
-public class CostosDAO implements ICostosDAO{
-    
+public class CostosDAO implements ICostosDAO {
+
     private IConexionBD conexionBD;
 
     public CostosDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
-    
 
     @Override
     public Costos obtenerCosto(Long id) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
-        try{
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
+        try {
             bd.getTransaction().begin();
             Costos costoEncontrado = bd.find(Costos.class, id);
             bd.getTransaction().commit();
             return costoEncontrado;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
             throw new PersistenciaException("No se pudo encontrar el costo: " + ex.getMessage(), ex);
-        }
-        finally{
-            bd.close();
+        } finally {
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public List<Costos> obtenerAllCostos() throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
-        try{
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
+        try {
             bd.getTransaction().begin();
             CriteriaBuilder builder = bd.getCriteriaBuilder();
             CriteriaQuery<Costos> criteria = builder.createQuery(Costos.class);
@@ -59,38 +62,42 @@ public class CostosDAO implements ICostosDAO{
             bd.getTransaction().commit();
             return costos;
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
             throw new PersistenciaException("No se pudo encontrar los costos: " + ex.getMessage(), ex);
-        }
-        finally{
-            bd.close();
+        } finally {
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public Costos agregarCosto(Costos costos) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
-        try{
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
+        try {
             bd.getTransaction().begin();
             bd.persist(costos);
             bd.getTransaction().commit();
             return costos;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
             throw new PersistenciaException("No se pudo agregar el costo: " + ex.getMessage(), ex);
-        }
-        finally{
-            bd.close();
+        } finally {
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public Costos actualizarCosto(Costos costos) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
-        try{
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
+        try {
             bd.getTransaction().begin();
             Costos costoActualizado = bd.find(Costos.class, costos.getId());
             costoActualizado.setPrecioNormal(costos.getPrecioNormal());
@@ -98,13 +105,14 @@ public class CostosDAO implements ICostosDAO{
             bd.merge(costoActualizado);
             bd.getTransaction().commit();
             return costoActualizado;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             bd.getTransaction().rollback();
             System.out.println(ex.getMessage());
             throw new PersistenciaException("No se pudo actualizar el costo: " + ex.getMessage(), ex);
-        }
-        finally{
-            bd.close();
+        } finally {
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
@@ -112,5 +120,5 @@ public class CostosDAO implements ICostosDAO{
     public void eliminarCosto(Long id) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

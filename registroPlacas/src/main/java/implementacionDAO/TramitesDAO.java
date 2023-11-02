@@ -10,6 +10,7 @@ import excepciones.PersistenciaException;
 import interfaces.ITramitesDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -29,7 +30,8 @@ public class TramitesDAO implements ITramitesDAO {
 
     @Override
     public Tramites obtenerTramite(Long id) throws PersistenciaException {
-         EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             Tramites tramiteEncontrado = bd.find(Tramites.class, id);
@@ -41,13 +43,16 @@ public class TramitesDAO implements ITramitesDAO {
             throw new PersistenciaException("No se pudo encontrar el trámite: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public List<Tramites> obtenerAllTramites() throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             CriteriaBuilder builder = bd.getCriteriaBuilder();
@@ -64,13 +69,16 @@ public class TramitesDAO implements ITramitesDAO {
             throw new PersistenciaException("No se pudo encontrar los trámites: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+           if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public Tramites agregarTramite(Tramites tramites) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             bd.persist(tramites);
@@ -82,13 +90,16 @@ public class TramitesDAO implements ITramitesDAO {
             throw new PersistenciaException("No se pudo agregar el trámite: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 
     @Override
     public Tramites actualizarTramite(Tramites tramites) throws PersistenciaException {
-        EntityManager bd = conexionBD.useConnectionMySQL();
+        EntityManagerFactory bdf = conexionBD.useConnectionMySQL();
+        EntityManager bd = bdf.createEntityManager();
         try{
             bd.getTransaction().begin();
             Tramites tramiteActualizado = bd.find(Tramites.class, tramites.getId());
@@ -105,7 +116,9 @@ public class TramitesDAO implements ITramitesDAO {
             throw new PersistenciaException("No se pudo actualizar el trámite: " + ex.getMessage(), ex);
         }
         finally{
-            bd.close();
+            if (bd != null && bd.isOpen()) {
+                bd.close();
+            }
         }
     }
 

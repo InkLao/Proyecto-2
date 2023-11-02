@@ -28,7 +28,7 @@ public class pruebas {
      */
     public static void main(String[] args) throws PersistenciaException {
         // TODO code application logic here
-        
+
 //        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia");
 //        EntityManager em = emf.createEntityManager();
 //        em.getTransaction().begin();
@@ -38,27 +38,19 @@ public class pruebas {
 //        em.getTransaction().commit();
 //        em.close();
 //        emf.close();
-        
-    FactoryDAO factoryDAO = new FactoryDAO();
-    
-    //Persona persona = new Persona("1234567891011", "Daniel", "Alamea", "Lopez", Calendar.getInstance(), Boolean.FALSE, "123456789", "ROHJ010918HSLDRRA4");
+        FactoryDAO factoryDAO = new FactoryDAO();
 
-    //persona.setTramites(null);
-    //factoryDAO.crearPersonasDAO().agregarPersona(persona);
-    
+        //Persona persona = new Persona("1234567891011", "Daniel", "Alamea", "Lopez", Calendar.getInstance(), Boolean.FALSE, "123456789", "ROHJ010918HSLDRRA4");
+        //persona.setTramites(null);
+        //factoryDAO.crearPersonasDAO().agregarPersona(persona);
 //    Automoviles automovil = new Automoviles("abcdefghijklmnopq", "Supra", "rojo", "1998", "Toyota");
 //    
-//    factoryDAO.crearVehiculosDAO().agregarVehiculo(automovil);
-//    
-    
-    TarifaPlacas tarifaPlacas = new TarifaPlacas(CondicionVehiculo.NUEVO, 400F);
-    
-    //TarifaLicencias tarifaLicencias = new TarifaLicencias(300F, VigenciaTarifaLicencia.I_AÑO, 400F);
+//        factoryDAO.crearVehiculosDAO().agregarVehiculo(automovil);
+        TarifaPlacas tarifaPlacas = new TarifaPlacas(CondicionVehiculo.NUEVO, 400F);
+        TarifaLicencias tarifaLicencias = new TarifaLicencias(200f, VigenciaTarifaLicencia.I_AÑO, 300f); // factoryDAO.crearCostosDAO().agregarCosto(tarifaPlacas);
 
-    factoryDAO.crearCostosDAO().agregarCosto(tarifaPlacas);
-    
-    //factoryDAO.crearCostosDAO().agregarCosto(tarifaLicencias);
-    
+        factoryDAO.crearCostosDAO().agregarCosto(tarifaLicencias);
+        factoryDAO.crearCostosDAO().agregarCosto(tarifaPlacas);
     }
-    
+
 }
