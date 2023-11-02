@@ -22,15 +22,15 @@ public class pruebas {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        
-        Persona nuevoUsuario = new Persona("1234567891011", "Daniel", "Alamea", "Lopez", Calendar.getInstance(), Boolean.FALSE, "123456789");
-        em.persist(nuevoUsuario);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia");
+//        EntityManager em = emf.createEntityManager();
+//        em.getTransaction().begin();
+//        
+//        Persona nuevoUsuario = new Persona("1234567891011", "Daniel", "Alamea", "Lopez", Calendar.getInstance(), Boolean.FALSE, "123456789");
+//        em.persist(nuevoUsuario);
+//        em.getTransaction().commit();
+//        em.close();
+//        emf.close();
         
     }
     

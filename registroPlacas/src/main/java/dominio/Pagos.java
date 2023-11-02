@@ -24,17 +24,24 @@ public class Pagos {
     @Column(name = "monto")
     private Float monto;
 
+    //Relaciones
+    @OneToOne(mappedBy = "Pagos", cascade = CascadeType.PERSIST)
+    private Tramites tramites;
+    
     public Pagos() {
     }
 
-    public Pagos(Long id, Float monto) {
+    public Pagos(Long id, Float monto, Tramites tramites) {
         this.id = id;
         this.monto = monto;
+        this.tramites = tramites;
     }
 
-    public Pagos(Float monto) {
+    public Pagos(Float monto, Tramites tramites) {
         this.monto = monto;
+        this.tramites = tramites;
     }
+    
 
     public Long getId() {
         return id;
@@ -59,6 +66,14 @@ public class Pagos {
         return hash;
     }
 
+    public Tramites getTramites() {
+        return tramites;
+    }
+
+    public void setTramites(Tramites tramites) {
+        this.tramites = tramites;
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

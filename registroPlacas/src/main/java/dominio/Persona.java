@@ -7,6 +7,7 @@ package dominio;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -43,10 +44,17 @@ public class Persona implements Serializable {
     @Column(name = "telefono", nullable = false, length = 255)
     private String telefono;
 
+    @Column(name = "curp", nullable = false, length = 18)
+    private String curp;
+    
+    //relaciones
+    @OneToMany (mappedBy = "Personas")
+    private List<Tramites> tramites;
+    
     public Persona() {
     }
 
-    public Persona(String rfc, String nombres, String apellido_paterno, String apellido_materno, Calendar fechaNacimiento, Boolean discapacidad, String telefono) {
+    public Persona(String rfc, String nombres, String apellido_paterno, String apellido_materno, Calendar fechaNacimiento, Boolean discapacidad, String telefono, String curp, List<Tramites> tramites) {
         this.rfc = rfc;
         this.nombres = nombres;
         this.apellido_paterno = apellido_paterno;
@@ -54,18 +62,20 @@ public class Persona implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.discapacidad = discapacidad;
         this.telefono = telefono;
+        this.curp = curp;
+        this.tramites = tramites;
     }
 
-    public Persona(String nombres, String apellido_paterno, String apellido_materno, Calendar fechaNacimiento, Boolean discapacidad, String telefono) {
+    public Persona(String rfc, String nombres, String apellido_paterno, String apellido_materno, Calendar fechaNacimiento, Boolean discapacidad, String telefono, String curp) {
+        this.rfc = rfc;
         this.nombres = nombres;
         this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
         this.fechaNacimiento = fechaNacimiento;
         this.discapacidad = discapacidad;
         this.telefono = telefono;
+        this.curp = curp;
     }
-    
-    
 
     public String getRfc() {
         return rfc;
@@ -123,8 +133,23 @@ public class Persona implements Serializable {
         this.telefono = telefono;
     }
 
+    public List<Tramites> getTramites() {
+        return tramites;
+    }
 
+    public void setTramites(List<Tramites> tramites) {
+        this.tramites = tramites;
+    }
 
+    public String getCurp() {
+        return curp;
+    }
+
+    public void setCurp(String curp) {
+        this.curp = curp;
+    }
+    
+    
     /**
      * Metodo get que regresa la edad de la persona
      *

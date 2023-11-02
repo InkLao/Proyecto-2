@@ -7,6 +7,7 @@ package dominio;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,11 +15,13 @@ import java.util.Objects;
  * @author HP
  */
 @Entity
-@Table(name = "vehiculos")
+@Table(name = "Vehiculos")
+@DiscriminatorColumn(name = "tipo")
+@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
 public class Vehiculos {
     
     @Id
-    @Column(name = "serie", length = 255)
+    @Column(name = "serie", length = 17)
     private String serie;
     
     @Column(name = "modelo", nullable = false, length = 255)
@@ -33,24 +36,30 @@ public class Vehiculos {
     @Column(name = "marca", nullable = false, length = 255)
     private String marca;
 
+    //Relaciones
+    @OneToMany (mappedBy = "Vehiculos")
+    private List<Placas> placas;
+    
     public Vehiculos() {
     }
 
-    public Vehiculos(String modelo, String color, String linea, String marca) {
-        this.modelo = modelo;
-        this.color = color;
-        this.linea = linea;
-        this.marca = marca;
-    }
-
-    public Vehiculos(String serie, String modelo, String color, String linea, String marca) {
+    public Vehiculos(String serie, String modelo, String color, String linea, String marca, List<Placas> placas) {
         this.serie = serie;
         this.modelo = modelo;
         this.color = color;
         this.linea = linea;
         this.marca = marca;
+        this.placas = placas;
     }
 
+    public Vehiculos(String modelo, String color, String linea, String marca, List<Placas> placas) {
+        this.modelo = modelo;
+        this.color = color;
+        this.linea = linea;
+        this.marca = marca;
+        this.placas = placas;
+    }
+    
     public String getSerie() {
         return serie;
     }
@@ -91,6 +100,14 @@ public class Vehiculos {
         this.marca = marca;
     }
 
+    public List<Placas> getPlacas() {
+        return placas;
+    }
+
+    public void setPlacas(List<Placas> placas) {
+        this.placas = placas;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 5;
